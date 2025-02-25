@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-900 antialiased;
+    background-image: url('/images/image.ico'); /* Updated with correct filename and extension */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-md transition-all duration-300 relative 
+    overflow-hidden shadow-md hover:shadow-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-orange-600 via-amber-500 to-orange-500 text-white 
+    hover:from-pink-600 hover:via-amber-400 hover:to-pink-500 
+    before:absolute before:inset-0 before:bg-gradient-to-r before:from-amber-400/20 before:to-pink-400/20 
+    before:translate-x-[-100%] hover:before:translate-x-[100%] 
+    before:transition-transform before:duration-500 
+    before:pointer-events-none before:mix-blend-overlay;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-orange-600 border-2 border-amber-500/20
+    hover:border-pink-500 hover:text-amber-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-amber-50
+    before:absolute before:inset-0 before:bg-gradient-to-r 
+    before:from-pink-100/50 before:to-amber-100/50 
+    before:translate-x-[-100%] hover:before:translate-x-[100%] 
+    before:transition-transform before:duration-500 
+    before:pointer-events-none before:mix-blend-overlay;
+  }
+
+  .animate-fade-in {
+    @apply opacity-0 animate-[fadeIn_0.5s_ease-in_forwards];
+  }
+
+  .animate-slide-up {
+    @apply opacity-0 translate-y-8;
+    animation: slideUp 0.5s ease-out forwards;
+    animation-delay: var(--slide-delay, 0s);
+  }
+
+  .animate-scale {
+    @apply hover:scale-105 transition-transform duration-300;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-amber-500 to-pink-500;
+  }
+
+  /* Add new button animations */
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .btn-shine {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-shine::after {
+    @apply absolute top-0 right-0 bottom-0 left-0;
+    background: linear-gradient(
+      to right,
+      rgba(255,255,255,0) 0%,
+      rgba(251, 191, 36, 0.2) 25%,
+      rgba(236, 72, 153, 0.2) 50%,
+      rgba(251, 191, 36, 0.2) 75%,
+      rgba(255,255,255,0) 100%
+    );
+    animation: shimmer 2.5s infinite;
+    content: '';
+    transform: translateX(-100%);
+  }
+
+  /* Add hover state animations */
+  .btn:hover {
+    @apply transform -translate-y-0.5;
+  }
+
+  .btn:active {
+    @apply transform translate-y-0.5;
+  }
+
+  .btn-hover-lift {
+    @apply hover:-translate-y-0.5 active:translate-y-0.5;
+  }
+
+  /* Add new gradient backgrounds */
+  .bg-gradient-warm {
+    @apply bg-gradient-to-br from-orange-900 via-pink-800 to-amber-900;
+  }
+
+  .bg-gradient-warm-light {
+    @apply bg-gradient-to-r from-amber-50 via-pink-50 to-amber-50;
+  }
+
+  /* Add hover styles for links */
+  .link-hover {
+    @apply transition-colors duration-300 hover:text-transparent hover:bg-clip-text 
+    hover:bg-gradient-to-r hover:from-amber-500 hover:via-pink-500 hover:to-amber-400;
+  }
+
+  /* Add a new class for the register button */
+  .btn-register {
+    @apply bg-gradient-to-r from-orange-600 via-amber-500 to-orange-500 text-white px-4 py-2 rounded-md
+    hover:from-pink-600 hover:via-amber-400 hover:to-pink-500 
+    relative overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl
+    hover:-translate-y-0.5 active:translate-y-0.5;
+  }
+
+  .btn-register::after {
+    @apply absolute top-0 right-0 bottom-0 left-0;
+    background: linear-gradient(
+      to right,
+      rgba(255,255,255,0) 0%,
+      rgba(251, 191, 36, 0.2) 25%,
+      rgba(236, 72, 153, 0.2) 50%,
+      rgba(251, 191, 36, 0.2) 75%,
+      rgba(255,255,255,0) 100%
+    );
+    animation: shimmer 2.5s infinite;
+    content: '';
+    transform: translateX(-100%);
+  }
+
+  /* Update navigation overlay styles */
+  .nav-overlay {
+    @apply bg-gradient-to-r from-white/95 via-pink-50/95 to-white/95
+    backdrop-blur-md border-b border-pink-100/20
+    bg-opacity-90 backdrop-saturate-150;
+  }
+
+  /* Update navigation link hover effects */
+  .nav-link-hover {
+    @apply relative transition-colors duration-300;
+  }
+
+  .nav-link-hover::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5
+    bg-gradient-to-r from-amber-400 via-pink-400 to-amber-400
+    transition-all duration-300;
+  }
+
+  .nav-link-hover:hover::after {
+    @apply w-full;
+  }
+
+  @keyframes shrink {
+    from { width: 100%; }
+    to { width: 0%; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
